@@ -1,0 +1,26 @@
+{
+  "name": "clinic-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "serverless offline",
+    "deploy": "serverless deploy",
+    "remove": "serverless remove"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "aws-lambda": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.155",
+    "@types/node": "^24.6.2",
+    "serverless": "^4.20.2",
+    "serverless-offline": "^14.4.0",
+    "typescript": "^5.9.3"
+  }
+}

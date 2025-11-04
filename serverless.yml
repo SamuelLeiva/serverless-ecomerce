@@ -1,0 +1,27 @@
+service: serverless-ts-v4
+
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+
+functions:
+  hello:
+    handler: src/handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+# Build nativo en Serverless v4 (reemplaza serverless-esbuild)
+build:
+  esbuild: true
+  minify: false
+  sourcemap: true
+  target: node20
+  platform: node
+
+plugins:
+  - serverless-offline
