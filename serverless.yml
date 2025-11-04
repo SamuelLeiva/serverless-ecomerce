@@ -7,8 +7,21 @@ provider:
   runtime: nodejs20.x
   region: us-east-1
   stage: dev
+  
   environment:
     USERS_TABLE: ${self:service}-users-${sls:stage}
+  
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:GetItem
+            - dynamodb:Scan
+            - dynamodb:DeleteItem
+          Resource:
+            - arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:service}-users-${sls:stage}
 
 resources:
   Resources:
@@ -31,6 +44,12 @@ functions:
       - httpApi:
           path: /
           method: get
+  createUser:
+    handler: src/users/handlers/createUser.main
+    events:
+      - httpApi:
+          path: /users
+          method: post
 
 # Build nativo en Serverless v4 (reemplaza serverless-esbuild)
 build:
