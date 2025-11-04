@@ -1,4 +1,4 @@
-service: serverless-ts-v4
+service: serverless-ts-ecommerce
 
 frameworkVersion: '4'
 
@@ -6,6 +6,23 @@ provider:
   name: aws
   runtime: nodejs20.x
   region: us-east-1
+  stage: dev
+  environment:
+    USERS_TABLE: ${self:service}-users-${sls:stage}
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.USERS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
 
 functions:
   hello:
