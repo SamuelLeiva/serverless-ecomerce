@@ -50,6 +50,12 @@ functions:
       - httpApi:
           path: /users
           method: post
+  getAllUsers:
+    handler: src/users/handlers/getAllUsers.main
+    events:
+      - httpApi:
+          path: /users
+          method: get
 
 # Build nativo en Serverless v4 (reemplaza serverless-esbuild)
 build:
