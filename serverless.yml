@@ -16,7 +16,7 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            - dynamodb:PutItem
+            - dynamodb:UpdateItem
             - dynamodb:GetItem
             - dynamodb:Scan
             - dynamodb:DeleteItem
@@ -38,12 +38,6 @@ resources:
         BillingMode: PAY_PER_REQUEST
 
 functions:
-  hello:
-    handler: src/handler.hello
-    events:
-      - httpApi:
-          path: /
-          method: get
   createUser:
     handler: src/users/handlers/createUser.main
     events:
@@ -68,6 +62,12 @@ functions:
       - httpApi:
           path: /users/{id}
           method: delete
+  updateUser:
+    handler: src/users/handlers/updateUser.main
+    events:
+      - httpApi:
+          path: /users/{id}
+          method: put
 
 # Build nativo en Serverless v4 (reemplaza serverless-esbuild)
 build:

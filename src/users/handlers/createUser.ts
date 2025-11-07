@@ -28,8 +28,6 @@ export const main: APIGatewayProxyHandlerV2 = async (event) => {
     if (errors.length > 0)
       return respond(400, { errors: errors.map((err) => err) });
 
-    console.log(process.env.USERS_TABLE);
-
     //generar uuid y guardar en la tabla
     const userId = uuidv4();
     await dbClient.send(
