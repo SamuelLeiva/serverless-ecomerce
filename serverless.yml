@@ -62,6 +62,12 @@ functions:
       - httpApi:
           path: /users/{id}
           method: get
+  deleteUser:
+    handler: src/users/handlers/deleteUser.main
+    events:
+      - httpApi:
+          path: /users/{id}
+          method: delete
 
 # Build nativo en Serverless v4 (reemplaza serverless-esbuild)
 build:
